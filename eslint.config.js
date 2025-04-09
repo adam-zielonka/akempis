@@ -23,6 +23,11 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      "indent": ["warn", 2, { "SwitchCase": 1 }],
+      "linebreak-style": ["warn", "unix"],
+      "quotes": ["warn", "double"],
+      "semi": ["warn", "always"],
+      "max-len": ["warn", { "code": 120 }],
     },
   },
 )
