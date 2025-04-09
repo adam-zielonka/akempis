@@ -12,8 +12,8 @@ const App = observer(() => {
     </p>
 
     {book.map((item) => {
-      return <p>{item.chapters.map((chapter, index) => {
-        return <button key={index} value={index} onClick={() => {
+      return <p key={item.title}>{item.chapters.map((chapter) => {
+        return <button key={chapter.title} onClick={() => {
           store.select(item, chapter);
         }} disabled={store.selectedBook?.title === item.title && store.selectedChapter?.title === chapter.title}>
           {item.title.split(" ")[1]} - {chapter.title.split(" ")[1]}
