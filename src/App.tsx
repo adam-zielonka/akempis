@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import book from './book.json'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
+  return <div>
+    <h1>O NAŚLADOWANIU CHRYSTUSA</h1>
+    <p>tłumaczenie: Anna Kamieńska</p>
+    {book.map((item, index) => {
+    return <div key={index} className="book">
+      <h2>{item.title}</h2>
+      <h2>{item.subtitle}</h2>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {item.chapters.map((chapter, index) => {
+          return <div key={index} className="chapter">
+            <h3>{chapter.title}</h3>
+            <h4>{chapter.subtitle}</h4>
+            {chapter.paragraf.map((paragraf, index) => {
+              return <p key={index} className="paragraf">
+                {paragraf}
+              </p>})}
+          </div>
+        })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>})}
+  </div>
 }
 
 export default App
