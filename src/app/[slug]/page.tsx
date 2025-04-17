@@ -41,6 +41,9 @@ export default async function Page({
       <Link href={"/"}>Lista rozdziałów</Link>
       {nextChapter && <Link href={`/${nextChapter.slug}`}>Następny rozdział</Link>}
     </div>
+
+
+    <p>{chapter.date.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}</p>
     <h2>{chapter.bookTitle} {chapter.bookSubtitle}</h2>
     <h3>{chapter.title} {chapter.subtitle}</h3>
 
