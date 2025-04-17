@@ -50,5 +50,12 @@ export default async function Page({
     {chapter.paragraf.map((paragraf, index) => (
       <p key={index}>{paragraf}</p>
     ))}
+
+    <div>&nbsp;</div>
+    <div className="navigation">
+      {previousChapter && <Link href={`/${previousChapter.slug}`}>Poprzedni rozdział</Link>}
+      <Link href={"/"}>Lista rozdziałów</Link>
+      {nextChapter && <Link href={`/${nextChapter.slug}`}>Następny rozdział</Link>}
+    </div>
   </div>;
 }
