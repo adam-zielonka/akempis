@@ -1,5 +1,25 @@
 import { getChapter } from "@/db/chapters";
 
+import type { Metadata } from 'next'
+ 
+export async function generateMetadata(
+  { params }: {params: Promise<{ slug: string }>}
+): Promise<Metadata> {
+  const slug = (await params).slug
+  const chapter = getChapter(slug);
+
+  if (!chapter) {
+    return {
+      title: 'Nie znaleziono rozdziału',
+    }
+  }
+ 
+  return {
+    title: `${chapter.bookTitle} ${chapter.title} | O Naśladowaniu Chrystusa`,
+  }
+}
+ 
+
 export default async function Page({
     params,
   }: {
