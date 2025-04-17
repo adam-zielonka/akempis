@@ -57,3 +57,13 @@ export function getChapters() {
 export function getChapter(slug: string) {
   return db.find((chapter) => chapter.slug === slug);
 }
+
+export function getPreviousChapter(slug: string) {
+  const index = db.findIndex((chapter) => chapter.slug === slug);
+  return db[index - 1];
+}
+
+export function getNextChapter(slug: string) {
+  const index = db.findIndex((chapter) => chapter.slug === slug);
+  return db[index + 1];
+}

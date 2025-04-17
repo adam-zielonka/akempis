@@ -44,3 +44,9 @@ tbody tr.book {
   background-color: #f3f3f3;
   font-style: italic;
 }
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
