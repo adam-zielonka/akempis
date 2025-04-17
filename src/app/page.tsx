@@ -8,7 +8,7 @@ export default async function Page() {
   for (const chapter of getChapters()) {
     if (chapter.bookSubtitle !== lastBookSubtitle) {
       chapters.push(<tr key={`${chapter.slug}-before`} className="book">
-        <td colSpan={5}>
+        <td colSpan={4}>
           {chapter.bookTitle} - {chapter.bookSubtitle}
         </td>
       </tr>);
@@ -18,8 +18,7 @@ export default async function Page() {
 
     chapters.push(<tr key={chapter.slug}>
       <td>{chapter.date.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}</td>
-      <td>{chapter.bookTitle.split(" ")[1]}</td>
-      <td>{chapter.title.split(" ")[1]}</td>
+      <td>{chapter.bookTitle.split(" ")[1]} - {chapter.title.split(" ")[1]}</td>
       <td>{chapter.paragraf.length}</td>
       <td><Link href={`/${chapter.slug}`}>{chapter.subtitle}</Link></td>
     </tr>);
@@ -29,7 +28,7 @@ export default async function Page() {
         <td>
           {chapter.nextDate.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}
         </td>
-        <td colSpan={4}>
+        <td colSpan={3}>
         </td>
       </tr>);
     }
@@ -38,15 +37,6 @@ export default async function Page() {
   return (
     <div>
       <table>
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Księga</th>
-            <th>Rozdział</th>
-            <th>Ilość paragrafów</th>
-            <th>Tytuł</th>
-          </tr>
-        </thead>
         <tbody>
           {chapters}
         </tbody>
