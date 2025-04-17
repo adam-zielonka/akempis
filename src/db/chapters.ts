@@ -22,7 +22,7 @@ function getDB() {
       date = new Date(afterBreakDateText);
     }
 
-    const nextDate = new Date(date);
+    const nextDate = new Date(newDate);
     nextDate.setDate(nextDate.getDate() + 1);
 
     return {
