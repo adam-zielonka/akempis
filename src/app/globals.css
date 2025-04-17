@@ -15,3 +15,32 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+table {
+  border-collapse: collapse;
+  font-size: 0.9em;
+  min-width: 400px;
+}
+
+thead tr {
+  background-color: black;
+  color: #ffffff;
+  text-align: left;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+tbody tr {
+  border: 1px solid #dddddd;
+}
+
+tbody tr.muted {
+  background-color: #f3f3f3;
+}
+
+tbody tr.book {
+  background-color: #f3f3f3;
+  font-style: italic;
+}
