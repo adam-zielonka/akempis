@@ -44,8 +44,8 @@ export default async function Page({
 
 
     <p>{chapter.date.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}</p>
-    <h3>{chapter.bookTitle} - {chapter.bookSubtitle}</h3>
-    <h4>{chapter.title} - {chapter.subtitle}</h4>
+    <h3>{chapter.bookTitle}<br/>{chapter.bookSubtitle}</h3>
+    <h4>{chapter.title}<br/>{chapter.subtitle}</h4>
 
     {chapter.paragraf.map((paragraf, index) => (
       <p key={index}>{paragraf}</p>
