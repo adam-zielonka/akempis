@@ -7,40 +7,38 @@ export default async function Page() {
 
   for (const chapter of getChapters()) {
     if (chapter.bookSubtitle !== lastBookSubtitle) {
-      chapters.push(<tr key={`${chapter.slug}-before`} className="book">
-        <td colSpan={4}>
+      chapters.push(<div key={`${chapter.slug}-before`} className="book">
+        <div>
           {chapter.bookTitle} - {chapter.bookSubtitle}
-        </td>
-      </tr>);
+        </div>
+      </div>);
 
       lastBookSubtitle = chapter.bookSubtitle;
     }
 
-    chapters.push(<tr key={chapter.slug}>
-      <td>{chapter.date.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}</td>
-      <td>{chapter.bookTitle.split(" ")[1]} - {chapter.title.split(" ")[1]}</td>
-      <td>{chapter.paragraf.length}</td>
-      <td><Link href={`/${chapter.slug}`}>{chapter.subtitle}</Link></td>
-    </tr>);
+    chapters.push(<Link key={chapter.slug} href={`/${chapter.slug}`}>
+      <div className="chapter">
+        <div className="info">
+          <div>{chapter.date.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}</div>
+          <div>{chapter.bookTitle.split(" ")[1]} - {chapter.title.split(" ")[1]} ({chapter.paragraf.length})</div>
+        </div>
+        <div>&nbsp;</div>
+        <div>{chapter.subtitle}</div>
+      </div>
+    </Link>);
 
     if (chapter.nextDate.getDay() === 2) {
-      chapters.push(<tr key={`${chapter.slug}-after`} className="muted">
-        <td>
+      chapters.push(<div key={`${chapter.slug}-after`} className="chapter muted">
+        <div>
           {chapter.nextDate.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}
-        </td>
-        <td colSpan={3}>
-        </td>
-      </tr>);
+        </div>
+      </div>);
     }
   }
 
   return (
-    <div>
-      <table>
-        <tbody>
-          {chapters}
-        </tbody>
-      </table>
+    <div className="chapters">
+      {chapters}
     </div>
   );
 }
