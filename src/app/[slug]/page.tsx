@@ -16,7 +16,7 @@ export async function generateMetadata(
   }
  
   return {
-    title: `${chapter.bookTitle} ${chapter.title} | O Naśladowaniu Chrystusa`,
+    title: `${chapter.bookTitle} ${chapter.title} | ${chapter.subtitle} | O Naśladowaniu Chrystusa`,
   };
 }
  
