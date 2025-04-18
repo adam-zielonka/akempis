@@ -1,7 +1,7 @@
 import fullBook from "./book.json";
 
 const startDateText = "2025-04-23";
-const brakeDateText = "2025-06-24";
+const brakeDateText = "2025-06-21";
 const afterBreakDateText = "2025-10-01";
 const db = getDB();
 
