@@ -29,19 +29,13 @@ export default async function Page({
   }) {
   const { slug } = await params;
   const chapter = getChapter(slug);
-  const previousChapter = getPreviousChapter(slug);
-  const nextChapter = getNextChapter(slug);
 
   if (!chapter) {
     return <div>Nie znaleziono rozdziału</div>;
   }
 
   return <div>
-    <div className="navigation">
-      {previousChapter && <Link href={`/${previousChapter.slug}`}>Poprzedni rozdział</Link>}
-      <Link href={"/"}>Lista rozdziałów</Link>
-      {nextChapter && <Link href={`/${nextChapter.slug}`}>Następny rozdział</Link>}
-    </div>
+    <Navigation slug={slug} />
 
     {chapter.dates.map((date, index) => (
       <p key={index}>{formatDate(date.date)}
@@ -57,10 +51,17 @@ export default async function Page({
     ))}
 
     <div>&nbsp;</div>
-    <div className="navigation">
-      {previousChapter && <Link href={`/${previousChapter.slug}`}>Poprzedni rozdział</Link>}
-      <Link href={"/"}>Lista rozdziałów</Link>
-      {nextChapter && <Link href={`/${nextChapter.slug}`}>Następny rozdział</Link>}
-    </div>
+    <Navigation slug={slug} />
+  </div>;
+}
+
+function Navigation({slug}: {slug: string}) {
+  const previousChapter = getPreviousChapter(slug);
+  const nextChapter = getNextChapter(slug);
+
+  return <div className="navigation">
+    {previousChapter && <Link href={`/chapter/${previousChapter.slug}`}>Poprzedni rozdział</Link>}
+    <Link href={"/"}>Lista rozdziałów</Link>
+    {nextChapter && <Link href={`/chapter/${nextChapter.slug}`}>Następny rozdział</Link>}
   </div>;
 }
