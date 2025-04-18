@@ -2,6 +2,7 @@ import { getChapter, getNextChapter, getPreviousChapter } from "@/db/chapters";
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { calculateSplit, formatDate, printSplit } from "../../utils";
  
 export async function generateMetadata(
   { params }: {params: Promise<{ slug: string }>}
@@ -42,8 +43,12 @@ export default async function Page({
       {nextChapter && <Link href={`/${nextChapter.slug}`}>Następny rozdział</Link>}
     </div>
 
-
-    <p>{chapter.date.toLocaleDateString("pl-PL", { weekday: "long", month: "long", day: "numeric" })}</p>
+    {chapter.dates.map((date, index) => (
+      <p key={index}>{formatDate(date.date)}
+        {chapter.dates.length > 1 
+          && <span> ({printSplit(calculateSplit(chapter.paragraf.length, chapter.dates.length)[index])}) </span>}
+      </p>
+    ))}
     <h2>{chapter.bookTitle} - {chapter.bookSubtitle}</h2>
     <h3>{chapter.title} - {chapter.subtitle}</h3>
 

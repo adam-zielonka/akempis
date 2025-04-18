@@ -34,15 +34,22 @@ function getDB() {
   for (const book of fullBook) {
     
     chapters.push(...book.chapters.map((chapter) => {
-      const { date, nextDate } = calculateDay();
+      const dates = [calculateDay()];
+
+      if (chapter.paragraf.length > 5) {
+        dates.push(calculateDay());
+      }
+
+      if (chapter.paragraf.length > 14) {
+        dates.push(calculateDay());
+      }
 
       return {
         ...chapter,
         bookTitle: book.title,
         bookSubtitle: book.subtitle,
         slug: `${book.title.split(" ")[1]}-${chapter.title.split(" ")[1]}`,
-        date,
-        nextDate,
+        dates,
       };
     }));
   }
