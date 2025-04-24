@@ -19,7 +19,7 @@ export default async function Page() {
 
     chapter.dates.forEach(({ date, nextDate }, index, dates) => {
       chapters.push(<Link key={`${chapter.slug}-${index}`} href={`/chapter/${chapter.slug}`}>
-        <div className="chapter">
+        <div className={`chapter ${isToday(date) ? "today" : ""} ${isPrevious(date) ? "previous" : ""}`}>
           <div className="info">
             <div>{formatDate(date)}</div>
             <div>{chapter.bookTitle.split(" ")[1]} - {chapter.title.split(" ")[1]} ({chapter.paragraf.length})</div>
@@ -36,7 +36,8 @@ export default async function Page() {
       </Link>);
 
       if (nextDate.getDay() === 2) {
-        chapters.push(<div key={`${chapter.slug}-${index}-after`} className="chapter muted">
+        chapters.push(<div key={`${chapter.slug}-${index}-after`} 
+          className={`chapter muted ${isToday(nextDate) ? "today" : ""}`}>
           <div>{formatDate(nextDate)}</div>
         </div>);
       }
@@ -48,4 +49,25 @@ export default async function Page() {
       {chapters}
     </div>
   );
+}
+
+function isToday(date: Date) {
+  const today = new Date();
+  return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+}
+
+function isPrevious(date: Date) {
+  const today = new Date();
+  if (date.getFullYear() < today.getFullYear()) {
+    return true;
+  }
+  if (date.getFullYear() === today.getFullYear()) {
+    if (date.getMonth() < today.getMonth()) {
+      return true;
+    }
+    if (date.getMonth() === today.getMonth()) {
+      return date.getDate() < today.getDate();
+    }
+  }
+  return false;
 }

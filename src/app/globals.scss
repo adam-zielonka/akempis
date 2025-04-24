@@ -59,6 +59,14 @@ h1 {
     background-color: #f0f0f0;
   }
 
+  &.previous {
+    background-color: #deeefc;
+  }
+
+  &.today {
+    background-color: #d7fbd7;
+  }
+
   .split {
     font-weight: 900;
     font-size: large;
