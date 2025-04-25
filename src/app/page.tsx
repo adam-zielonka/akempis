@@ -51,6 +51,7 @@ export default async function Page() {
   );
 }
 
+// TODO: check if date is today on fronted
 function isToday(date: Date) {
   const today = new Date();
   return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
