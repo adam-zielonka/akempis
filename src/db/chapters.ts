@@ -2,7 +2,7 @@ import fullBook from "./book.json";
 
 const startDateText = "2025-04-23";
 const brakeDateText = "2025-06-21";
-const afterBreakDateText = "2025-10-14";
+const afterBreakDateText = "2025-10-15";
 const db = getDB();
 
 function getDB() {
@@ -18,7 +18,7 @@ function getDB() {
       date.setDate(date.getDate() + 1);
     }
 
-    if (date.getTime() > brakeDate.getTime() && date.getMonth() < 9) {
+    if (date.getTime() > brakeDate.getTime() && date.getMonth() < 9 && date.getFullYear() === 2025) {
       date = new Date(afterBreakDateText);
     }
 
